@@ -22,9 +22,9 @@ async def add_admin(bot: Client, message: Message):
     new_admin_id = int(message.command[1])
     if new_admin_id not in ADMIN:
         ADMIN.append(new_admin_id)
-        await message.reply_text(f"User {new_admin_id} has been added as an admin.")
+        await message.reply_text(f"**User {new_admin_id} has been added as an admin**")
     else:
-        await message.reply_text(f"User {new_admin_id} is already an admin.")
+        await message.reply_text(f"**User {new_admin_id} is already an admin**")
 
 # Remove an admin command
 @Client.on_message(filters.command("remove_admin") & filters.user(Config.OWNER))
@@ -36,9 +36,9 @@ async def remove_admin(bot: Client, message: Message):
     admin_id_to_remove = int(message.command[1])
     if admin_id_to_remove in ADMIN:
         ADMIN.remove(admin_id_to_remove)
-        await message.reply_text(f"User {admin_id_to_remove} has been removed as an admin.")
+        await message.reply_text(f"**User {admin_id_to_remove} has been removed as an admin**")
     else:
-        await message.reply_text(f"User {admin_id_to_remove} is not an admin.")
+        await message.reply_text(f"**User {admin_id_to_remove} is not an admin**")
 
 
 
@@ -63,11 +63,11 @@ async def tutorial(bot: Client, message: Message):
     user_id = message.from_user.id
     format_template = await TFTBOTS.get_format_template(user_id)
     await message.reply_text(
-        text="watch tutorial video for how to use renamer bot",
+        text="Watch Tutorial Video For How To Use Renamer Bot",
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("• ᴏᴡɴᴇʀ", url="https://t.me/Tech_freak_tamil"),
-             InlineKeyboardButton("• ᴛᴜᴛᴏʀɪᴀʟ", url="https://t.me/Tech_freak_tamil")]
+            [InlineKeyboardButton("• Owner", url="https://t.me/Gi_Cartoons_Network"),
+             InlineKeyboardButton("• Tutorial", url="https://t.me/Gi_Cartoons_Network")]
         ])
     )
 
@@ -175,7 +175,7 @@ async def get_stats(bot: Client, message: Message):
     total_users = await TFTBOTS.total_users_count()
     uptime = time.strftime("%Hh %Mm %Ss", time.gmtime(time.time() - bot.uptime))
     start_t = time.time()
-    st = await message.reply('**Accessing The Details.....**')
+    st = await message.reply('**Accessing The Details In Progress...**')
     end_t = time.time()
     time_taken_s = (end_t - start_t) * 1000
     await st.edit_text(
@@ -190,7 +190,7 @@ async def broadcast_handler(bot: Client, m: Message):
     await bot.send_message(Config.LOG_CHANNEL, f"{m.from_user.mention} or {m.from_user.id} Started the Broadcast.")
     all_users = await TFTBOTS.get_all_users()
     broadcast_msg = m.reply_to_message
-    sts_msg = await m.reply_text("Broadcast Started..!") 
+    sts_msg = await m.reply_text("**Broadcast Started..!**") 
     done = 0
     failed = 0
     success = 0
@@ -207,10 +207,10 @@ async def broadcast_handler(bot: Client, m: Message):
             failed += 1
         done += 1
         if not done % 20:
-            await sts_msg.edit_text(f"Broadcast In Progress: \n\nTotal Users: {total_users} \nCompleted: {done} / {total_users}\nSuccess: {success}\nFailed: {failed}")
+            await sts_msg.edit_text(f"**Broadcast In Progress: \n\nTotal Users: {total_users} \nCompleted: {done} / {total_users}\nSuccess: {success}\nFailed: {failed}**")
 
     completed_in = datetime.timedelta(seconds=int(time.time() - start_time))
-    await sts_msg.edit_text(f"Bʀᴏᴀᴅᴄᴀsᴛ Cᴏᴍᴩʟᴇᴛᴇᴅ: \nCompleted in `{completed_in}`.\n\nTotal Users: {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nFailed: {failed}")
+    await sts_msg.edit_text(f"**Bʀᴏᴀᴅᴄᴀsᴛ Cᴏᴍᴩʟᴇᴛᴇᴅ: \nCompleted in `{completed_in}`.\n\nTotal Users: {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nFailed: {failed}**")
 
 async def send_msg(user_id: int, message: Message):
     try:
