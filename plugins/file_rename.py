@@ -162,7 +162,7 @@ async def auto_rename_files(client, message):
 
     if not format_template:
         return await message.reply_text(
-            "Please Set An Auto Rename Format First Using /autorename"
+            "**Please Set An Auto Rename Format First Using /autorename**"
         )
 
     if message.document:
@@ -199,7 +199,7 @@ async def auto_rename_files(client, message):
             if quality_placeholder in format_template:
                 extracted_qualities = extract_quality(file_name)
                 if extracted_qualities == "Unknown":
-                    await message.reply_text("**__I Was Not Able To Extract The Quality Properly. Renaming As 'Unknown'...__**")
+                    await message.reply_text("**I Was Not Able To Extract The Quality Properly. Renaming As 'Unknown'**")
                     # Mark the file as ignored
                     del renaming_operations[file_id]
                     return  # Exit the handler if quality extraction fails
@@ -220,7 +220,7 @@ async def auto_rename_files(client, message):
             message,
             file_name=renamed_file_path,
             progress=progress_for_pyrogram,
-            progress_args=("Download Started...", download_msg, time.time()),
+            progress_args=("**Downloading...**", download_msg, time.time()),
         )
     except Exception as e:
         del renaming_operations[file_id]
@@ -236,7 +236,7 @@ async def auto_rename_files(client, message):
         metadata_added = False
         _bool_metadata = await TFTBOTS.get_metadata(user_id)
         if _bool_metadata:
-            await download_msg.edit("** Please wait Adding Metadata...__**")
+            await download_msg.edit("** Please wait Adding Metadata...**")
 
             metadata = await TFTBOTS.get_metadata_code(user_id)
             if metadata:
@@ -251,7 +251,7 @@ async def auto_rename_files(client, message):
                     if process.returncode == 0:
                         metadata_added = True
                         path = metadata_file_path
-                        await download_msg.edit("** Metadata Added Successfully ✅...__**")
+                        await download_msg.edit("** Metadata Added Successfully ✅**")
 
                     else:
                         error_message = stderr.decode()
@@ -268,7 +268,7 @@ async def auto_rename_files(client, message):
         if not metadata_added:
             # Metadata addition failed; upload the renamed file only
             await download_msg.edit(
-                "Metadata addition failed. Uploading the renamed file only."
+                "Metadata addition failed. Uploading the renamed file only!"
             )
             path = renamed_file_path
 
@@ -307,12 +307,12 @@ async def auto_rename_files(client, message):
                     thumb=ph_path,
                     caption=caption,
                     progress=progress_for_pyrogram,
-                    progress_args=("Upload Started...", upload_msg, time.time()),
+                    progress_args=("<b>Please Wait! Uploading Started In Progress...</b>", upload_msg, time.time()),
                 )
                 if Config.DUMB_CHANNEL:
                    # Send user info
                   user = message.from_user
-                  user_info = f"🧑‍💻 User Info\n\n👤 Username: @{user.username}\n🆔 User ID: {user.id}"
+                  user_info = f"**🧑‍💻 User Info\n\n👤 Username: @{user.username}\n🆔 User ID: {user.id}**"
                   await client.send_message(Config.DUMB_CHANNEL, user_info)               
                   await l.forward(Config.DUMB_CHANNEL)
             elif media_type == "video":
@@ -323,12 +323,12 @@ async def auto_rename_files(client, message):
                     thumb=ph_path,
                     duration=0,
                     progress=progress_for_pyrogram,
-                    progress_args=("Upload Started...", upload_msg, time.time()),
+                    progress_args=("<b>Please Wait! Uploading Started In Progress...</b>", upload_msg, time.time()),
                 )
                 if Config.DUMB_CHANNEL:
                    # Send user info
                   user = message.from_user
-                  user_info = f"🧑‍💻 User Info\n\n👤 Username: @{user.username}\n🆔 User ID: {user.id}"
+                  user_info = f"**🧑‍💻 User Info\n\n👤 Username: @{user.username}\n🆔 User ID: {user.id}**"
                   await client.send_message(Config.DUMB_CHANNEL, user_info)               
                   await l.forward(Config.DUMB_CHANNEL)
             elif media_type == "audio":
@@ -339,12 +339,12 @@ async def auto_rename_files(client, message):
                     thumb=ph_path,
                     duration=0,
                     progress=progress_for_pyrogram,
-                    progress_args=("Upload Started...", upload_msg, time.time()),
+                    progress_args=("<b>Please Wait! Uploading Started In Progress...</b>", upload_msg, time.time()),
                 )
                 if Config.DUMB_CHANNEL:
                    # Send user info
                   user = message.from_user
-                  user_info = f"🧑‍💻 User Info\n\n👤 Username: @{user.username}\n🆔 User ID: {user.id}"
+                  user_info = f"**🧑‍💻 User Info\n\n👤 Username: @{user.username}\n🆔 User ID: {user.id}**"
                   await client.send_message(Config.DUMB_CHANNEL, user_info)               
                   await l.forward(Config.DUMB_CHANNEL)
         except Exception as e:
@@ -372,7 +372,3 @@ async def auto_rename_files(client, message):
 
 
         
-# Tech freak 
-# Don't Remove Credit!!!
-# Telegram Channel @Tech_freak_tamil
-# Developer @devilo7
