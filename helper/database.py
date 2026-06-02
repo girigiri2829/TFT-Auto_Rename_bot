@@ -23,7 +23,7 @@ class Database:
             file_id=None,
             caption=None,
             metadata=True,
-            metadata_code="Telegram : @Tech_freak_tamil",
+            metadata_code="Gi Cartoons Network",
             format_template=None,
             ban_status=dict(
                 is_banned=False,
